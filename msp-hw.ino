@@ -11,8 +11,6 @@
 */
 
 // most launchpads have a red LED
-#include "sensor.h"
-
 #define LED RED_LED
 
 //see pins_energia.h for more LED definitions
@@ -30,4 +28,5 @@ void loop() {
   delay(1000);               // wait for a second
   digitalWrite(LED, LOW);    // turn the LED off by making the voltage LOW
   delay(1000);               // wait for a second
+  auto foo = 1;
 }
