@@ -1,10 +1,10 @@
-## msp-skel
+## msp430-skel
 
-Interested in a low-level, `make(1)`-based build setup for your [TI msp430](http://en.wikipedia.org/wiki/TI_MSP430) project? `msp-skel` uses the [Energia](http://energia.nu) toolchain, but without applying its incumbent libraries & code transormations. It was created in the context of the author's challenges getting a build/test/run pipeline established on OSX Yosemite, but should be applicable to any vaguely POSIX'ish platform that Energia supports.
+Interested in a low-level, `make(1)`-based build setup for your [TI msp430](http://en.wikipedia.org/wiki/TI_MSP430) project? `msp430-skel` uses the [Energia](http://energia.nu) toolchain, but without applying its incumbent libraries & code transormations. It was created in the context of the author's challenges getting a build/test/run pipeline established on OSX Yosemite, but should be applicable to any vaguely POSIX'ish platform that Energia supports.
 
 This codebase is released under the terms of the MIT License. See `LICENSE.txt`, in this repo, for more information.
 
-A tip of the chapeau to [Rei Vilo](https://github.com/rei-vilo), who [pointed the author](https://github.com/energia/Energia/issues/570) towards the [embedXcode](http://embedxcode.weebly.com/) project. It was instructive in understanding how to leverage Energia to acheive `msp-skel`'s own goal(s). If you would prefer an Xcode-based developer experience, check it out!
+A tip of the chapeau to [Rei Vilo](https://github.com/rei-vilo), who [pointed the author](https://github.com/energia/Energia/issues/570) towards the [embedXcode](http://embedxcode.weebly.com/) project. It was instructive in understanding how to leverage Energia to acheive `msp430-skel`'s own goal(s). If you would prefer an Xcode-based developer experience, check it out!
 
 ### Why Do This?
 
