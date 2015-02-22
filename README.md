@@ -2,15 +2,24 @@
 
 Learning learning learning.
 
-Mostly I want to establish patterns/workflow for how I'm developing/building/deployment my projects, so that I can leverage it in future endevours.
+The goal of this repo:
+
+* Establish patterns/workflow for how I'm developing/building/deployment my msp430 projects, for future use
 
 ### Workflow Thus Far
 
-* I'm doing this on OSX Yosemite, which has a pretty poor experience as far as raw `mspdebug` & `msp430-gcc` is concerned
+* I'm doing this on OSX Yosemite, which has a pretty poor experience as far as raw `mspdebug` & `msp430-gcc` is concerned (most of the activity appears to be from the 2011 timeframe)
 * Energia, on the other hand, works out-of-the-box with my MSP-EXP430F5529LP
-* Building/flashing on Energia (so we're forced to pull in the Energia boilerplate + `void`/`setup`)
-* But other files are normal C
-* The "use external editor" option is enabled, so I'm actually writing code in Emacs
-* Sadly this means I'm not standing up the `main` function, disabling the watchdog timer, etc
-* But I should be able to otherwise avoid the Energia API, if so desired, and write straight-up C
-* I'm going to set up some `Makefile` helpers for advanced linting, etc, apart from building
+* If you use the toolchain distributed in Energia, you can make it work
+
+### What's here
+
+1. A very basic project skeleton.
+2. A `Makefile` with a few things:
+  1. The default target will build an elf executable, ready to be flashed onto an msp430
+  2. `lint` target, leveraging `cppcheck`
+  3. `clean` target
+
+### TODO
+
+* Some kind of `mspdebug` thing
