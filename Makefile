@@ -1,22 +1,20 @@
 ENERGIA_PATH=/Applications/Energia.app/Contents/Resources/Java/hardware/tools/msp430
 CC=$(ENERGIA_PATH)/bin/msp430-gcc
-CFLAGS=-g -mmcu=msp430f5529
+CFLAGS=-g -mmcu=msp430f5529 -Wpendantic -Wall
 LD_LIBRARY_PATH=$(ENERGIA_PATH)
-ODIR=obj
-_OBJ = main.o
-OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
+SOURCES = $(wildcard src/**/*.c src/*.c src/**/*.cpp src/*.cpp)
+DEPS = $(wildcard src/**/*.h src/*.h src/**/*.hpp src/*.hpp)
+TARGET = hello-worlf.elf
 
-hw.elf: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS)
+all: lint $(TARGET)
 
-$(ODIR)/%.o: %.c
-	mkdir -p $(ODIR)
-	$(CC) -c -o $@ $< $(CFLAGS)
+$(TARGET): $(SOURCES) $(DEPS)
+	$(CC) -o $@ $(SOURCES) $(CFLAGS)
 
 .PHONY: lint clean
 
 lint:
-	cppcheck --std=c11 *.c *.h
+	cppcheck --std=c11 $(SOURCES) $(DEPS)
 
 clean:
-	rm -Rf hw.elf $(ODIR)
+	rm -Rf $(TARGET)
