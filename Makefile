@@ -24,8 +24,9 @@
 # out a project, using low-level C (ie *not* dependant on Energia libraries and
 # build-time code transformation).
 
-# Set to your board. Should correspond to what will be passed into msp430-gcc's -mmcu flag
+# Edit this is need be. Should correspond to what will be passed into msp430-gcc's -mmcu flag
 MSP430PLATFORM=msp430f5529
+
 # Change TARGET to be whatever you want to name the output
 TARGET=$(shell basename `pwd`)_$(MSP430PLATFORM).elf
 
@@ -33,12 +34,19 @@ TARGET=$(shell basename `pwd`)_$(MSP430PLATFORM).elf
 ENERGIA_PATH ?=/Applications/Energia.app/Contents/Resources/Java/hardware/tools/msp430
 
 # This is useful when invoking mspdebug w/o having to cwd
-LD_LIBRARY_PATH=$(ENERGIA_PATH)
+LD_LIBRARY_PATH=$(ENERGIA_PATH)/mspdebug
 
 # This is set up to pull in the msp430 toolchain and apply specific flags based on
 # your platform
 CC=$(ENERGIA_PATH)/bin/msp430-gcc
 CFLAGS=-g -mmcu=$(MSP430PLATFORM) -Wall
+
+# mspdebug and msp430-gdb paths
+MSPDEBUG=$(ENERGIA_PATH)/mspdebug/mspdebug
+GDB=$(ENERGIA_PATH)/bin/msp430-gdb
+
+# Edit this to reflect the working driver that mspdebug will use on your system (tilib is a good choice)
+MSPDEBUG_DRIVER=sim
 
 SOURCES=$(wildcard src/**/*.c src/*.c src/**/*.cpp src/*.cpp)
 DEPS=$(wildcard src/**/*.h src/*.h src/**/*.hpp src/*.hpp)
@@ -55,3 +63,10 @@ lint:
 
 clean:
 	rm -Rf $(TARGET)
+
+flash: all
+	LD_LIBRARY_PATH=$(LD_LIBRARY_PATH) $(MSPDEBUG) $(MSPDEBUG_DRIVER) "prog $(TARGET)"
+
+debug: all
+	LD_LIBRARY_PATH=$(LD_LIBRARY_PATH) $(MSPDEBUG) $(MSPDEBUG_DRIVER) "prog $(TARGET)" gdb &
+	$(GDB) $(TARGET) --eval="target remote localhost:2000"
