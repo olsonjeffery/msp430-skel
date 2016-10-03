@@ -6,6 +6,8 @@ This codebase is released under the terms of the MIT License. See `LICENSE.txt`,
 
 A tip of the chapeau to [Rei Vilo](https://github.com/rei-vilo), who [pointed the author](https://github.com/energia/Energia/issues/570) towards the [embedXcode](http://embedxcode.weebly.com/) project. It was instructive in understanding how to leverage Energia to acheive `msp430-skel`'s own goal(s). If you would prefer an Xcode-based developer experience, check it out!
 
+`msp430-skel` currently works with Energia 17 and previous versions. It does not work with the Energia 18 release.
+
 ### Why Do This?
 
 * The [author](http://github.com/olsonjeffery) is using OSX Yosemite which, as far as the raw `mspdebug`/`msp430-gcc`/driver experience is concerned, is somewhat poor (the most recent developer activity appears to be from the 2011 timeframe + there's all kinds of aweful kernel extension cruft to deal with)
